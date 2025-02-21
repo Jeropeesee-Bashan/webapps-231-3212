@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }} <small class="text-muted">{{ post.author }}</small></h1>
+    <p>{{ post.date }}</p>
+    <div class="post-illustration">
+        <img src="{{ url_for('static', filename='images/' + post.image_id) }}" alt="post image">
+    </div>
+    <p>{{ post.text }}</p>
+    <div class="mb-4">
+        <h3>Напишите комментарий</h3>
+        <form method="post">
+            <div class="mb-3">
+                <label for="commentAuthor" class="form-label">Ваше имя</label>
+                <input type="text" class="form-control" id="commentAuthor" name="author" required>
+            </div>
+            <div class="mb-3">
+                <label for="commentText" class="form-label">Ваш комментарий</label>
+                <textarea class="form-control" id="commentText" name="text" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+    {% for comment in post.comments %}
+        <div class="d-flex align-items-start">
+            <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="avatar" class="avatar me-3" style="width: 64px;">
+            <div>
+                <p>{{ comment.author }}</p>
+                <p>{{ comment.text }}</p>
+                {% if comment.replies %}
+                    <div class="ms-4">
+                        {% for reply in comment.replies %}
+                            <div class="d-flex align-items-start mt-3">
+                                <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="avatar" class="avatar me-3" style="width: 48px;">
+                                <div>
+                                    <p>{{ reply.author }}</p>
+                                    <p>{{ reply.text }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}

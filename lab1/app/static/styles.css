@@ -15,6 +15,17 @@ footer p {
     margin: 0;
 }
 
+.post-illustration {
+    display: flex;
+    justify-content: center;
+}
+
+.post-illustration img {
+    display: block;
+    max-width: 70%;
+    height: auto;
+}
+
 container * {
     margin-bottom: 1rem;
 }
