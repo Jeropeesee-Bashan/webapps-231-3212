@@ -5,3 +5,16 @@ body {
 .avatar {
     max-width: 100%;
 }
+
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+container * {
+    margin-bottom: 1rem;
+}
