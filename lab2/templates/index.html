@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Демонстрация запроса</title>
+    <style>
+        .section {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        code {
+            display: block;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Информация о запросе</h1>
+
+    <div class="section">
+        <h2>URL Параметры</h2>
+        <code>
+            {% for param, value in url_params.items() %}
+              {{ param }}: {{ value }}
+              <br>
+            {% endfor %}
+        </code>
+    </div>
+
+    <div class="section">
+        <h2>Заголовки запроса</h2>
+        <code>
+            {% for header, value in headers.items() %}
+              {{ header }}: {{ value }}
+              <br>
+            {% endfor %}
+        </code>
+    </div>
+
+    <div class="section">
+        <h2>Куки<h2>
+        <code>
+            {% for cookie, value in cookies.items() %}
+              {{ cookie }}: {{ value }}
+              <br>
+            {% endfor %}
+        </code>
+    </div>
+
+    <div class="section">
+        <h2>Форма</h2>
+        <code>
+            {% for field, value in form_data.items() %}
+              {{ field }}: {{ value }}
+              <br>
+            {% endfor %}
+        </code>
+        
+        <h3>Тестовая форма</h3>
+        <form method="POST">
+            <input type="text" name="name" placeholder="Ваше имя"><br><br>
+            <input type="email" name="email" placeholder="Ваш email"><br><br>
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+</body>
+</html>
