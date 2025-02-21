@@ -19,9 +19,20 @@ def index():
 def phone():
     message = ''
     if request.method == 'POST':
-        phone_number = request.form.get('phone', '')
-        message = ""
-        # TODO: Add validation
+        phone_number = request.form.get('phone', None)
+        if phone_number is None:
+            message = "Номер телефона не указан"
+        elif not phone_number:
+            message = "Номер телефона не может быть пустым"
+        else:
+            cleaned = ''.join(c for c in phone_number if c.isdigit())
+            if not cleaned.startswith('8'):
+                cleaned = '8' + cleaned[1:] if cleaned.startswith('7') else '8' + cleaned
+            
+            if len(cleaned) == 11 and cleaned.startswith('8'):                    
+                message = f"Номер телефона корректен: {cleaned[0]}-{cleaned[1:4]}-{cleaned[4:7]}-{cleaned[7:9]}-{cleaned[9:11]}"
+            else:
+                message = "Неверный формат номера телефона."
     
     return render_template('phone.html', message=message)
 
