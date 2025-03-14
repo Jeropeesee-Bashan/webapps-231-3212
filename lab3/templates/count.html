@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Счётчик пользователей</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login {
+            padding: 16px;
+            background-color: darkgreen;
+            color: white;
+        }
+
+        nav {
+            padding: 8px;
+            background-color: turquoise;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="secret">Секретная страница</a>
+    </nav>
+    <main>
+        <h1>Добро пожаловать!</h1>
+        {% if login_success -%}
+        <div class="login">
+            Вы успешно вошли!
+        </div>
+        {% endif %}
+        <p>Сайт посетило {{ visit_count }} человек.</p>
+    </main>
+</body>
+</html>

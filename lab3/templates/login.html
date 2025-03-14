@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логин</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        form {
+            display: flex;
+            gap: 16px;
+            flex-direction: column;
+            padding: 24px;
+            background-color: beige;
+        }
+
+        .bad-login {
+            padding: 16px;
+            background-color: darkred;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Вход</h1>
+    <form method="POST">
+        <input type="text" name="login" placeholder="Логин">
+        <input type="password" name="password" placeholder="Пароль">
+        <label for="remember">
+            <input type="checkbox" name="remember">
+            Запомнить меня
+        </label>
+        <input type="submit" value="Войти">
+    </form>
+    {% if reason -%}
+    <div class="bad-login">
+        {% if reason == "badlogin" %}
+        Неверный логин или пароль.
+        {% elif reason == "unauthorized" -%}
+        Чтобы получить доступ к странице, пожалуйста, войдите.
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
